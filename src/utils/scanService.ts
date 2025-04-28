@@ -1,7 +1,7 @@
 
 import { ScanResult, AccountData } from '@/types';
 
-// Mock data for demonstration
+// Expanded mock data for demonstration (over 100 sites)
 const mockAccounts: AccountData[] = [
   {
     id: '1',
@@ -74,17 +74,156 @@ const mockAccounts: AccountData[] = [
     deleteUrl: 'https://github.com/settings/admin',
     category: 'Development',
     hasPersonalInfo: false
+  },
+  {
+    id: '9',
+    name: 'LinkedIn',
+    url: 'linkedin.com',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/LinkedIn_logo_initials.png/240px-LinkedIn_logo_initials.png',
+    deleteUrl: 'https://www.linkedin.com/help/linkedin/answer/63',
+    category: 'Professional',
+    hasPersonalInfo: true
+  },
+  {
+    id: '10',
+    name: 'Instagram',
+    url: 'instagram.com',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/240px-Instagram_logo_2016.svg.png',
+    deleteUrl: 'https://www.instagram.com/accounts/remove/request/permanent/',
+    category: 'Social',
+    hasPersonalInfo: true
+  },
+  {
+    id: '11',
+    name: 'Gmail',
+    url: 'gmail.com',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Gmail_icon_%282020%29.svg/240px-Gmail_icon_%282020%29.svg.png',
+    deleteUrl: 'https://myaccount.google.com/deleteservices',
+    category: 'Email',
+    hasPersonalInfo: true
+  },
+  {
+    id: '12',
+    name: 'Airbnb',
+    url: 'airbnb.com',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Airbnb_Logo_B%C3%A9lo.svg/240px-Airbnb_Logo_B%C3%A9lo.svg.png',
+    deleteUrl: 'https://www.airbnb.com/help/article/240/how-do-i-cancel-my-account',
+    category: 'Travel',
+    hasPersonalInfo: true
+  },
+  {
+    id: '13',
+    name: 'Uber',
+    url: 'uber.com',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Uber_logo_2018.svg/240px-Uber_logo_2018.svg.png',
+    deleteUrl: 'https://help.uber.com/riders/article/delete-my-account--?nodeId=24010fe7-7a67-4ee5-9938-c734000b144a',
+    category: 'Transportation',
+    hasPersonalInfo: true
+  },
+  {
+    id: '14',
+    name: 'PayPal',
+    url: 'paypal.com',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/PayPal.svg/240px-PayPal.svg.png',
+    deleteUrl: 'https://www.paypal.com/myaccount/settings/data-controls',
+    category: 'Finance',
+    hasPersonalInfo: true
+  },
+  {
+    id: '15',
+    name: 'Microsoft',
+    url: 'microsoft.com',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Microsoft_logo.svg/240px-Microsoft_logo.svg.png',
+    deleteUrl: 'https://account.microsoft.com/profile/manage-account',
+    category: 'Technology',
+    hasPersonalInfo: true
+  },
+  {
+    id: '16',
+    name: 'Yahoo',
+    url: 'yahoo.com',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Yahoo%21_Logo_1995-2019.svg/240px-Yahoo%21_Logo_1995-2019.svg.png',
+    deleteUrl: 'https://help.yahoo.com/kb/SLN2044.html',
+    category: 'Email',
+    hasPersonalInfo: true
+  },
+  {
+    id: '17',
+    name: 'Slack',
+    url: 'slack.com',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Slack_Technologies_Logo.svg/240px-Slack_Technologies_Logo.svg.png',
+    deleteUrl: 'https://slack.com/help/articles/203953146-Delete-your-Slack-account',
+    category: 'Productivity',
+    hasPersonalInfo: false
+  },
+  {
+    id: '18',
+    name: 'Reddit',
+    url: 'reddit.com',
+    logo: 'https://upload.wikimedia.org/wikipedia/en/thumb/5/58/Reddit_logo_new.svg/240px-Reddit_logo_new.svg.png',
+    deleteUrl: 'https://www.reddit.com/settings/account',
+    category: 'Social',
+    hasPersonalInfo: false
+  },
+  {
+    id: '19',
+    name: 'Tumblr',
+    url: 'tumblr.com',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Tumblr_logo.svg/240px-Tumblr_logo.svg.png',
+    deleteUrl: 'https://www.tumblr.com/account/delete',
+    category: 'Social',
+    hasPersonalInfo: false
+  },
+  {
+    id: '20',
+    name: 'TikTok',
+    url: 'tiktok.com',
+    logo: 'https://upload.wikimedia.org/wikipedia/en/thumb/a/a9/TikTok_logo.svg/240px-TikTok_logo.svg.png',
+    deleteUrl: 'https://www.tiktok.com/legal/report/account-deletion',
+    category: 'Social',
+    hasPersonalInfo: true
   }
 ];
+
+// Generate a large number of additional mock sites
+const generateAdditionalSites = () => {
+  const categories = ['Social', 'Shopping', 'Entertainment', 'Finance', 'Travel', 'Technology', 'Email', 'Gaming', 'News', 'Health', 'Food', 'Education', 'Business', 'Sports'];
+  const siteSuffixes = ['.com', '.org', '.net', '.co', '.io', '.app', '.store', '.blog'];
+  
+  const additionalSites: AccountData[] = [];
+  
+  for (let i = 21; i <= 1000; i++) {
+    const category = categories[Math.floor(Math.random() * categories.length)];
+    const siteName = `Site${i}`;
+    const domain = siteName.toLowerCase() + siteSuffixes[Math.floor(Math.random() * siteSuffixes.length)];
+    
+    additionalSites.push({
+      id: i.toString(),
+      name: siteName,
+      url: domain,
+      logo: '',
+      deleteUrl: `https://${domain}/account/delete`,
+      category,
+      hasPersonalInfo: Math.random() > 0.7 // About 30% have personal info
+    });
+  }
+  
+  return additionalSites;
+};
+
+// Combine original mock sites with generated ones
+const allMockAccounts = [...mockAccounts, ...generateAdditionalSites()];
 
 // Simulate a scanning process
 export const scanEmailAccounts = async (email: string): Promise<ScanResult> => {
   // Simulate API call delay
   return new Promise((resolve) => {
     setTimeout(() => {
-      // Return 4-7 random accounts with 1-2 guaranteed to have personal info
-      const shuffled = [...mockAccounts].sort(() => 0.5 - Math.random());
-      const numAccounts = Math.floor(Math.random() * 4) + 4; // Between 4 and 7
+      // Return a random number between 50 and 200 accounts
+      const numAccounts = Math.floor(Math.random() * 151) + 50; // Between 50 and 200
+      
+      // Shuffle the accounts and select the first numAccounts
+      const shuffled = [...allMockAccounts].sort(() => 0.5 - Math.random());
       let selected = shuffled.slice(0, numAccounts);
       
       // Ensure at least one has personal info
@@ -99,7 +238,8 @@ export const scanEmailAccounts = async (email: string): Promise<ScanResult> => {
       resolve({
         email,
         accounts: selected,
-        scannedAt: new Date()
+        scannedAt: new Date(),
+        totalAccounts: numAccounts
       });
     }, 2500); // 2.5 seconds delay to simulate scanning
   });

@@ -13,4 +13,5 @@ export interface ScanResult {
   email: string;
   accounts: AccountData[];
   scannedAt: Date;
+  totalAccounts: number;
 }

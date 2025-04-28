@@ -1,12 +1,21 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { ScanResult, AccountData } from '@/types';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Link } from 'lucide-react';
+import { Link, ChevronLeft, ChevronRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { 
+  Pagination, 
+  PaginationContent, 
+  PaginationItem, 
+  PaginationLink, 
+  PaginationNext, 
+  PaginationPrevious 
+} from '@/components/ui/pagination';
+import { ScrollArea } from '@/components/ui/scroll-area';
 
 interface ScanResultsProps {
   result: ScanResult;
@@ -19,17 +28,84 @@ export const ScanResults: React.FC<ScanResultsProps> = ({
   onNewScan,
   className
 }) => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const [selectedCategory, setSelectedCategory] = useState('all');
+  const ITEMS_PER_PAGE = 10;
+
   // Group accounts by category
-  const categories = result.accounts.reduce((acc: Record<string, AccountData[]>, account) => {
-    if (!acc[account.category]) {
-      acc[account.category] = [];
+  const accountsByCategory = result.accounts.reduce((acc: Record<string, AccountData[]>, account) => {
+    if (!acc[account.category.toLowerCase()]) {
+      acc[account.category.toLowerCase()] = [];
     }
-    acc[account.category].push(account);
+    acc[account.category.toLowerCase()].push(account);
     return acc;
   }, {});
 
   // Count accounts with personal info
   const personalInfoCount = result.accounts.filter(a => a.hasPersonalInfo).length;
+
+  // Get current accounts based on selected category and pagination
+  const getCurrentAccounts = () => {
+    let filteredAccounts = selectedCategory === 'all' 
+      ? result.accounts 
+      : result.accounts.filter(account => account.category.toLowerCase() === selectedCategory);
+    
+    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+    return filteredAccounts.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+  };
+
+  // Get total pages based on filtered accounts
+  const getTotalPages = () => {
+    const filteredAccounts = selectedCategory === 'all' 
+      ? result.accounts 
+      : result.accounts.filter(account => account.category.toLowerCase() === selectedCategory);
+    
+    return Math.ceil(filteredAccounts.length / ITEMS_PER_PAGE);
+  };
+
+  // Handle tab change
+  const handleTabChange = (value: string) => {
+    setSelectedCategory(value);
+    setCurrentPage(1); // Reset to first page when changing tabs
+  };
+
+  // Get distinct categories
+  const distinctCategories = [...new Set(result.accounts.map(account => account.category.toLowerCase()))];
+
+  // Generate pagination numbers
+  const paginationNumbers = () => {
+    const totalPages = getTotalPages();
+    const pages = [];
+    
+    if (totalPages <= 7) {
+      // Show all pages if total is 7 or fewer
+      for (let i = 1; i <= totalPages; i++) {
+        pages.push(i);
+      }
+    } else {
+      // Complex pagination with ellipsis
+      if (currentPage <= 3) {
+        // Near start
+        for (let i = 1; i <= 3; i++) pages.push(i);
+        pages.push(-1); // ellipsis
+        for (let i = totalPages - 1; i <= totalPages; i++) pages.push(i);
+      } else if (currentPage >= totalPages - 2) {
+        // Near end
+        pages.push(1, 2);
+        pages.push(-1); // ellipsis
+        for (let i = totalPages - 2; i <= totalPages; i++) pages.push(i);
+      } else {
+        // Middle
+        pages.push(1);
+        pages.push(-1); // ellipsis
+        for (let i = currentPage - 1; i <= currentPage + 1; i++) pages.push(i);
+        pages.push(-2); // ellipsis
+        pages.push(totalPages);
+      }
+    }
+    
+    return pages;
+  };
 
   return (
     <div className={cn("w-full max-w-4xl", className)}>
@@ -47,27 +123,63 @@ export const ScanResults: React.FC<ScanResultsProps> = ({
         )}
       </div>
 
-      <Tabs defaultValue="all" className="w-full">
-        <TabsList className="grid grid-cols-4 mb-6">
-          <TabsTrigger value="all">All Sites ({result.accounts.length})</TabsTrigger>
-          <TabsTrigger value="social">Social Media</TabsTrigger>
-          <TabsTrigger value="shopping">Shopping</TabsTrigger>
-          <TabsTrigger value="other">Others</TabsTrigger>
-        </TabsList>
+      <Tabs defaultValue="all" className="w-full" onValueChange={handleTabChange}>
+        <ScrollArea className="w-full pb-4">
+          <TabsList className="mb-6 inline-flex min-w-max">
+            <TabsTrigger value="all">All Sites ({result.accounts.length})</TabsTrigger>
+            {distinctCategories.map(category => (
+              <TabsTrigger key={category} value={category}>
+                {category.charAt(0).toUpperCase() + category.slice(1)} ({accountsByCategory[category]?.length || 0})
+              </TabsTrigger>
+            ))}
+          </TabsList>
+        </ScrollArea>
 
-        <TabsContent value="all" className="space-y-4">
-          {result.accounts.map(account => (
+        <TabsContent value={selectedCategory} className="space-y-4">
+          {getCurrentAccounts().map(account => (
             <AccountCard key={account.id} account={account} />
           ))}
+          
+          {/* Pagination */}
+          {getTotalPages() > 1 && (
+            <Pagination className="mt-8">
+              <PaginationContent>
+                <PaginationItem>
+                  <PaginationPrevious 
+                    onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                    aria-disabled={currentPage === 1}
+                    className={currentPage === 1 ? 'pointer-events-none opacity-50' : ''}
+                  />
+                </PaginationItem>
+                
+                {paginationNumbers().map((pageNum, index) => (
+                  pageNum < 0 ? (
+                    <PaginationItem key={`ellipsis-${index}`}>
+                      <span className="flex h-9 w-9 items-center justify-center">...</span>
+                    </PaginationItem>
+                  ) : (
+                    <PaginationItem key={pageNum}>
+                      <PaginationLink 
+                        isActive={pageNum === currentPage}
+                        onClick={() => setCurrentPage(pageNum)}
+                      >
+                        {pageNum}
+                      </PaginationLink>
+                    </PaginationItem>
+                  )
+                ))}
+                
+                <PaginationItem>
+                  <PaginationNext 
+                    onClick={() => setCurrentPage(prev => Math.min(prev + 1, getTotalPages()))}
+                    aria-disabled={currentPage === getTotalPages()}
+                    className={currentPage === getTotalPages() ? 'pointer-events-none opacity-50' : ''}
+                  />
+                </PaginationItem>
+              </PaginationContent>
+            </Pagination>
+          )}
         </TabsContent>
-
-        {Object.keys(categories).map(category => (
-          <TabsContent key={category} value={category.toLowerCase()} className="space-y-4">
-            {categories[category].map(account => (
-              <AccountCard key={account.id} account={account} />
-            ))}
-          </TabsContent>
-        ))}
       </Tabs>
       
       <div className="mt-8 flex justify-center">
