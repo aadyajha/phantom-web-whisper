@@ -1,203 +1,293 @@
+
 import { ScanResult, AccountData } from '@/types';
 
-// Real website mock data with recognizable brands
-const mockAccounts: AccountData[] = [
+// Popular Indian websites and services
+const indianWebsites: AccountData[] = [
   {
     id: '1',
-    name: 'Facebook',
-    url: 'facebook.com',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Facebook_f_Logo_%282019%29.svg/240px-Facebook_f_Logo_%282019%29.svg.png',
-    deleteUrl: 'https://facebook.com/help/delete_account',
-    category: 'Social',
-    hasPersonalInfo: true
-  },
-  {
-    id: '2',
-    name: 'Twitter',
-    url: 'twitter.com',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Logo_of_Twitter.svg/240px-Logo_of_Twitter.svg.png',
-    deleteUrl: 'https://twitter.com/settings/deactivate',
-    category: 'Social',
-    hasPersonalInfo: false
-  },
-  {
-    id: '3',
-    name: 'Amazon',
-    url: 'amazon.com',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/240px-Amazon_logo.svg.png',
-    deleteUrl: 'https://amazon.com/gp/help/customer/display.html?nodeId=GDK92DNLSGWTV6MP',
+    name: 'Flipkart',
+    url: 'flipkart.com',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Flipkart_logo.svg/240px-Flipkart_logo.svg.png',
+    deleteUrl: 'https://www.flipkart.com/account/manageaddress',
     category: 'Shopping',
     hasPersonalInfo: true
   },
   {
+    id: '2',
+    name: 'Myntra',
+    url: 'myntra.com',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Myntra_logo.png/240px-Myntra_logo.png',
+    deleteUrl: 'https://www.myntra.com/my/profile',
+    category: 'Shopping',
+    hasPersonalInfo: true
+  },
+  {
+    id: '3',
+    name: 'Paytm',
+    url: 'paytm.com',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Paytm_Logo_%28standalone%29.svg/240px-Paytm_Logo_%28standalone%29.svg.png',
+    deleteUrl: 'https://paytm.com/care/account-settings',
+    category: 'Finance',
+    hasPersonalInfo: true
+  },
+  {
     id: '4',
-    name: 'Netflix',
-    url: 'netflix.com',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/240px-Netflix_2015_logo.svg.png',
-    deleteUrl: 'https://www.netflix.com/cancelplan',
-    category: 'Entertainment',
-    hasPersonalInfo: true
-  },
-  {
-    id: '5',
-    name: 'Dropbox',
-    url: 'dropbox.com',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Dropbox_logo_2017.svg/240px-Dropbox_logo_2017.svg.png',
-    deleteUrl: 'https://www.dropbox.com/account/delete',
-    category: 'Storage',
-    hasPersonalInfo: true
-  },
-  {
-    id: '6',
-    name: 'Spotify',
-    url: 'spotify.com',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Spotify_logo_without_text.svg/240px-Spotify_logo_without_text.svg.png',
-    deleteUrl: 'https://www.spotify.com/account/overview/',
-    category: 'Entertainment',
-    hasPersonalInfo: false
-  },
-  {
-    id: '7',
-    name: 'Pinterest',
-    url: 'pinterest.com',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Pinterest_Logo.svg/240px-Pinterest_Logo.svg.png',
-    deleteUrl: 'https://www.pinterest.com/settings/',
-    category: 'Social',
-    hasPersonalInfo: false
-  },
-  {
-    id: '8',
-    name: 'GitHub',
-    url: 'github.com',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Octicons-mark-github.svg/240px-Octicons-mark-github.svg.png',
-    deleteUrl: 'https://github.com/settings/admin',
-    category: 'Development',
-    hasPersonalInfo: false
-  },
-  {
-    id: '9',
-    name: 'LinkedIn',
-    url: 'linkedin.com',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/LinkedIn_logo_initials.png/240px-LinkedIn_logo_initials.png',
-    deleteUrl: 'https://www.linkedin.com/help/linkedin/answer/63',
-    category: 'Professional',
-    hasPersonalInfo: true
-  },
-  {
-    id: '10',
-    name: 'Instagram',
-    url: 'instagram.com',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/240px-Instagram_logo_2016.svg.png',
-    deleteUrl: 'https://www.instagram.com/accounts/remove/request/permanent/',
-    category: 'Social',
-    hasPersonalInfo: true
-  },
-  {
-    id: '11',
-    name: 'Gmail',
-    url: 'gmail.com',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Gmail_icon_%282020%29.svg/240px-Gmail_icon_%282020%29.svg.png',
-    deleteUrl: 'https://myaccount.google.com/deleteservices',
-    category: 'Email',
-    hasPersonalInfo: true
-  },
-  {
-    id: '12',
-    name: 'Airbnb',
-    url: 'airbnb.com',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Airbnb_Logo_B%C3%A9lo.svg/240px-Airbnb_Logo_B%C3%A9lo.svg.png',
-    deleteUrl: 'https://www.airbnb.com/help/article/240/how-do-i-cancel-my-account',
+    name: 'IRCTC',
+    url: 'irctc.co.in',
+    logo: 'https://upload.wikimedia.org/wikipedia/en/thumb/9/9b/IRCTC_Logo.svg/240px-IRCTC_Logo.svg.png',
+    deleteUrl: 'https://www.irctc.co.in/nget/profile',
     category: 'Travel',
     hasPersonalInfo: true
   },
   {
-    id: '13',
-    name: 'Uber',
-    url: 'uber.com',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Uber_logo_2018.svg/240px-Uber_logo_2018.svg.png',
-    deleteUrl: 'https://help.uber.com/riders/article/delete-my-account--?nodeId=24010fe7-7a67-4ee5-9938-c734000b144a',
+    id: '5',
+    name: 'MakeMyTrip',
+    url: 'makemytrip.com',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/MakeMyTrip_Logo.png/240px-MakeMyTrip_Logo.png',
+    deleteUrl: 'https://www.makemytrip.com/profile/',
+    category: 'Travel',
+    hasPersonalInfo: true
+  },
+  {
+    id: '6',
+    name: 'Ola',
+    url: 'olacabs.com',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Ola_Cabs_logo.svg/240px-Ola_Cabs_logo.svg.png',
+    deleteUrl: 'https://help.olacabs.com/support/home',
     category: 'Transportation',
     hasPersonalInfo: true
   },
   {
+    id: '7',
+    name: 'Swiggy',
+    url: 'swiggy.com',
+    logo: 'https://upload.wikimedia.org/wikipedia/en/thumb/1/13/Swiggy_logo.svg/240px-Swiggy_logo.svg.png',
+    deleteUrl: 'https://www.swiggy.com/my-account',
+    category: 'Food',
+    hasPersonalInfo: true
+  },
+  {
+    id: '8',
+    name: 'Zomato',
+    url: 'zomato.com',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Zomato_logo.png/240px-Zomato_logo.png',
+    deleteUrl: 'https://www.zomato.com/contact',
+    category: 'Food',
+    hasPersonalInfo: true
+  },
+  {
+    id: '9',
+    name: 'JioMart',
+    url: 'jiomart.com',
+    logo: 'https://jep-asset.akamaized.net/jiostaticresources/jiomart/jm-logo.PNG',
+    deleteUrl: 'https://www.jiomart.com/customer/account/',
+    category: 'Shopping',
+    hasPersonalInfo: true
+  },
+  {
+    id: '10',
+    name: 'BigBasket',
+    url: 'bigbasket.com',
+    logo: 'https://upload.wikimedia.org/wikipedia/en/thumb/4/47/BigBasket_logo.svg/240px-BigBasket_logo.svg.png',
+    deleteUrl: 'https://www.bigbasket.com/account/profile/',
+    category: 'Shopping',
+    hasPersonalInfo: true
+  },
+  {
+    id: '11',
+    name: 'Naukri',
+    url: 'naukri.com',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Naukri_Logo.png/240px-Naukri_Logo.png',
+    deleteUrl: 'https://www.naukri.com/nlogin/logout',
+    category: 'Jobs',
+    hasPersonalInfo: true
+  },
+  {
+    id: '12',
+    name: 'IndiaMART',
+    url: 'indiamart.com',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/IndiaMart_Logo.svg/240px-IndiaMart_Logo.svg.png',
+    deleteUrl: 'https://my.indiamart.com/',
+    category: 'Business',
+    hasPersonalInfo: true
+  },
+  {
+    id: '13',
+    name: 'PhonePe',
+    url: 'phonepe.com',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/PhonePe_Logo.svg/240px-PhonePe_Logo.svg.png',
+    deleteUrl: 'https://www.phonepe.com/contact-us/',
+    category: 'Finance',
+    hasPersonalInfo: true
+  },
+  {
     id: '14',
-    name: 'PayPal',
-    url: 'paypal.com',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/PayPal.svg/240px-PayPal.svg.png',
-    deleteUrl: 'https://www.paypal.com/myaccount/settings/data-controls',
+    name: 'Google Pay',
+    url: 'pay.google.com',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Google_Pay_Logo_%282020%29.svg/240px-Google_Pay_Logo_%282020%29.svg.png',
+    deleteUrl: 'https://payments.google.com/payments/home#settings',
     category: 'Finance',
     hasPersonalInfo: true
   },
   {
     id: '15',
-    name: 'Microsoft',
-    url: 'microsoft.com',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Microsoft_logo.svg/240px-Microsoft_logo.svg.png',
-    deleteUrl: 'https://account.microsoft.com/profile/manage-account',
-    category: 'Technology',
+    name: 'BookMyShow',
+    url: 'bookmyshow.com',
+    logo: 'https://upload.wikimedia.org/wikipedia/en/thumb/8/89/BookMyShow_Logo.svg/240px-BookMyShow_Logo.svg.png',
+    deleteUrl: 'https://in.bookmyshow.com/contact-us',
+    category: 'Entertainment',
     hasPersonalInfo: true
   },
   {
     id: '16',
-    name: 'Yahoo',
-    url: 'yahoo.com',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Yahoo%21_Logo_1995-2019.svg/240px-Yahoo%21_Logo_1995-2019.svg.png',
-    deleteUrl: 'https://help.yahoo.com/kb/SLN2044.html',
-    category: 'Email',
-    hasPersonalInfo: true
+    name: 'Gaana',
+    url: 'gaana.com',
+    logo: 'https://upload.wikimedia.org/wikipedia/en/thumb/1/12/Gaana_logo.svg/240px-Gaana_logo.svg.png',
+    deleteUrl: 'https://gaana.com/settings',
+    category: 'Entertainment',
+    hasPersonalInfo: false
   },
   {
     id: '17',
-    name: 'Slack',
-    url: 'slack.com',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Slack_Technologies_Logo.svg/240px-Slack_Technologies_Logo.svg.png',
-    deleteUrl: 'https://slack.com/help/articles/203953146-Delete-your-Slack-account',
-    category: 'Productivity',
+    name: 'JioSaavn',
+    url: 'jiosaavn.com',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/JioSaavn_Logo.svg/240px-JioSaavn_Logo.svg.png',
+    deleteUrl: 'https://www.jiosaavn.com/account',
+    category: 'Entertainment',
     hasPersonalInfo: false
   },
   {
     id: '18',
-    name: 'Reddit',
-    url: 'reddit.com',
-    logo: 'https://upload.wikimedia.org/wikipedia/en/thumb/5/58/Reddit_logo_new.svg/240px-Reddit_logo_new.svg.png',
-    deleteUrl: 'https://www.reddit.com/settings/account',
-    category: 'Social',
-    hasPersonalInfo: false
+    name: 'Hotstar',
+    url: 'hotstar.com',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Disney%2B_Hotstar_logo.svg/240px-Disney%2B_Hotstar_logo.svg.png',
+    deleteUrl: 'https://www.hotstar.com/in/subscribe/my-account',
+    category: 'Entertainment',
+    hasPersonalInfo: true
   },
   {
     id: '19',
-    name: 'Tumblr',
-    url: 'tumblr.com',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Tumblr_logo.svg/240px-Tumblr_logo.svg.png',
-    deleteUrl: 'https://www.tumblr.com/account/delete',
-    category: 'Social',
-    hasPersonalInfo: false
+    name: 'Snapdeal',
+    url: 'snapdeal.com',
+    logo: 'https://upload.wikimedia.org/wikipedia/en/thumb/b/b0/Snapdeal_Logo_new.png/240px-Snapdeal_Logo_new.png',
+    deleteUrl: 'https://www.snapdeal.com/page/contact-us',
+    category: 'Shopping',
+    hasPersonalInfo: true
   },
   {
     id: '20',
-    name: 'TikTok',
-    url: 'tiktok.com',
-    logo: 'https://upload.wikimedia.org/wikipedia/en/thumb/a/a9/TikTok_logo.svg/240px-TikTok_logo.svg.png',
-    deleteUrl: 'https://www.tiktok.com/legal/report/account-deletion',
-    category: 'Social',
+    name: 'Urban Company',
+    url: 'urbancompany.com',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Urban_Company_Logo.png/240px-Urban_Company_Logo.png',
+    deleteUrl: 'https://www.urbancompany.com/customer/account',
+    category: 'Services',
     hasPersonalInfo: true
-  }
-];
-
-// Extended list of real websites (no generic sites)
-const extendedRealSites: AccountData[] = [
-  // Social Media
+  },
   {
     id: '21',
-    name: 'Snapchat',
-    url: 'snapchat.com',
-    logo: 'https://upload.wikimedia.org/wikipedia/en/thumb/c/c4/Snapchat_logo.svg/240px-Snapchat_logo.svg.png',
-    deleteUrl: 'https://support.snapchat.com/en-US/a/delete-my-account1',
-    category: 'Social',
+    name: 'HDFC Bank',
+    url: 'hdfcbank.com',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/HDFC_Bank_Logo.svg/240px-HDFC_Bank_Logo.svg.png',
+    deleteUrl: 'https://www.hdfcbank.com/personal/resources/support',
+    category: 'Finance',
     hasPersonalInfo: true
   },
   {
     id: '22',
+    name: 'SBI',
+    url: 'sbi.co.in',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/State_Bank_of_India_logo.svg/240px-State_Bank_of_India_logo.svg.png',
+    deleteUrl: 'https://www.onlinesbi.com/',
+    category: 'Finance',
+    hasPersonalInfo: true
+  },
+  {
+    id: '23',
+    name: 'ICICI Bank',
+    url: 'icicibank.com',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/ICICI_Bank_Logo.svg/240px-ICICI_Bank_Logo.svg.png',
+    deleteUrl: 'https://www.icicibank.com/customer-care',
+    category: 'Finance',
+    hasPersonalInfo: true
+  },
+  {
+    id: '24',
+    name: 'Axis Bank',
+    url: 'axisbank.com',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Axis_Bank_logo.svg/240px-Axis_Bank_logo.svg.png',
+    deleteUrl: 'https://www.axisbank.com/contact-us',
+    category: 'Finance',
+    hasPersonalInfo: true
+  },
+  {
+    id: '25',
+    name: 'Amazon India',
+    url: 'amazon.in',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/240px-Amazon_logo.svg.png',
+    deleteUrl: 'https://www.amazon.in/gp/help/customer/display.html?nodeId=GE2R5JQGERCRJMNE',
+    category: 'Shopping',
+    hasPersonalInfo: true
+  },
+  {
+    id: '26',
+    name: 'Reliance Digital',
+    url: 'reliancedigital.in',
+    logo: 'https://www.reliancedigital.in/build/client/images/loaders/rd_logo.svg',
+    deleteUrl: 'https://www.reliancedigital.in/customerprofile',
+    category: 'Shopping',
+    hasPersonalInfo: true
+  },
+  {
+    id: '27',
+    name: 'Sharechat',
+    url: 'sharechat.com',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Sharechat_Logo.svg/240px-Sharechat_Logo.svg.png',
+    deleteUrl: 'https://help.sharechat.com/',
+    category: 'Social',
+    hasPersonalInfo: false
+  },
+  {
+    id: '28',
+    name: 'Moj',
+    url: 'mojapp.in',
+    logo: 'https://static.moj.io/moj/Moj-Logo.png',
+    deleteUrl: 'https://help.mojapp.in/',
+    category: 'Social',
+    hasPersonalInfo: false
+  },
+  {
+    id: '29',
+    name: 'Tata CLiQ',
+    url: 'tatacliq.com',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/TataCliQ-Logo.png/240px-TataCliQ-Logo.png',
+    deleteUrl: 'https://www.tatacliq.com/contact-us',
+    category: 'Shopping',
+    hasPersonalInfo: true
+  },
+  {
+    id: '30',
+    name: 'Croma',
+    url: 'croma.com',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Croma_Logo.svg/240px-Croma_Logo.svg.png',
+    deleteUrl: 'https://www.croma.com/contact-us',
+    category: 'Shopping',
+    hasPersonalInfo: true
+  }
+];
+
+// Popular global websites that are frequently used in India
+const globalWebsites: AccountData[] = [
+  {
+    id: '31',
+    name: 'Facebook',
+    url: 'facebook.com',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Facebook_f_Logo_%282019%29.svg/240px-Facebook_f_Logo_%282019%29.svg.png',
+    deleteUrl: 'https://www.facebook.com/help/delete_account',
+    category: 'Social',
+    hasPersonalInfo: true
+  },
+  {
+    id: '32',
     name: 'WhatsApp',
     url: 'whatsapp.com',
     logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/240px-WhatsApp.svg.png',
@@ -206,137 +296,25 @@ const extendedRealSites: AccountData[] = [
     hasPersonalInfo: true
   },
   {
-    id: '23',
-    name: 'Discord',
-    url: 'discord.com',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Discord_Color_Text_Logo.svg/240px-Discord_Color_Text_Logo.svg.png',
-    deleteUrl: 'https://support.discord.com/hc/en-us/articles/212500837-How-do-I-permanently-delete-my-account-',
-    category: 'Social',
-    hasPersonalInfo: false
-  },
-  {
-    id: '24',
-    name: 'Telegram',
-    url: 'telegram.org',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Telegram_logo.svg/240px-Telegram_logo.svg.png',
-    deleteUrl: 'https://telegram.org/faq#q-how-do-i-delete-my-account',
-    category: 'Social',
-    hasPersonalInfo: false
-  },
-  {
-    id: '25',
-    name: 'Clubhouse',
-    url: 'clubhouse.com',
-    logo: 'https://play-lh.googleusercontent.com/r1ZtlFvqHVYcRA1i6NQQAqRJ2K7h0atPevNKGwa0Qgh81xc5QAuUt4aFLjgUPXSCgw',
-    deleteUrl: 'https://help.clubhouse.com/hc/en-us/articles/1500009526562-How-to-delete-your-account',
-    category: 'Social',
-    hasPersonalInfo: false
-  },
-  {
-    id: '26',
-    name: 'Mastodon',
-    url: 'mastodon.social',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Mastodon_Logotype_%28Simple%29.svg/240px-Mastodon_Logotype_%28Simple%29.svg.png',
-    deleteUrl: 'https://docs.joinmastodon.org/user/moving/',
-    category: 'Social',
-    hasPersonalInfo: false
-  },
-  
-  // Shopping
-  {
-    id: '27',
-    name: 'eBay',
-    url: 'ebay.com',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/EBay_logo.svg/240px-EBay_logo.svg.png',
-    deleteUrl: 'https://reg.ebay.com/reg/show-delete-account',
-    category: 'Shopping',
-    hasPersonalInfo: true
-  },
-  {
-    id: '28',
-    name: 'Etsy',
-    url: 'etsy.com',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Etsy_logo.svg/240px-Etsy_logo.svg.png',
-    deleteUrl: 'https://help.etsy.com/hc/en-us/articles/115015650208-How-to-Close-Your-Etsy-Account',
-    category: 'Shopping',
-    hasPersonalInfo: true
-  },
-  {
-    id: '29',
-    name: 'Walmart',
-    url: 'walmart.com',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Walmart_logo.svg/240px-Walmart_logo.svg.png',
-    deleteUrl: 'https://www.walmart.com/account/deleteaccount',
-    category: 'Shopping',
-    hasPersonalInfo: true
-  },
-  {
-    id: '30',
-    name: 'Target',
-    url: 'target.com',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Target_Corporation_logo_%28vector%29.svg/240px-Target_Corporation_logo_%28vector%29.svg.png',
-    deleteUrl: 'https://www.target.com/c/target-privacy-policy/-/N-4sr7p',
-    category: 'Shopping',
-    hasPersonalInfo: true
-  },
-  {
-    id: '31',
-    name: 'Best Buy',
-    url: 'bestbuy.com',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Best_Buy_Logo.svg/240px-Best_Buy_Logo.svg.png',
-    deleteUrl: 'https://www.bestbuy.com/profile/c/updateprofile',
-    category: 'Shopping',
-    hasPersonalInfo: true
-  },
-  {
-    id: '32',
-    name: 'Wayfair',
-    url: 'wayfair.com',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Wayfair_logo.svg/240px-Wayfair_logo.svg.png',
-    deleteUrl: 'https://www.wayfair.com/v/account/delete_account',
-    category: 'Shopping',
-    hasPersonalInfo: true
-  },
-  {
     id: '33',
-    name: 'ASOS',
-    url: 'asos.com',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Asos.svg/240px-Asos.svg.png',
-    deleteUrl: 'https://www.asos.com/customer-care/account-and-orders/',
-    category: 'Shopping',
+    name: 'Instagram',
+    url: 'instagram.com',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/240px-Instagram_logo_2016.svg.png',
+    deleteUrl: 'https://www.instagram.com/accounts/remove/request/permanent/',
+    category: 'Social',
     hasPersonalInfo: true
   },
-  
-  // Entertainment
   {
     id: '34',
-    name: 'Disney+',
-    url: 'disneyplus.com',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Disney%2B_logo.svg/240px-Disney%2B_logo.svg.png',
-    deleteUrl: 'https://www.disneyplus.com/account',
-    category: 'Entertainment',
+    name: 'Gmail',
+    url: 'gmail.com',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Gmail_icon_%282020%29.svg/240px-Gmail_icon_%282020%29.svg.png',
+    deleteUrl: 'https://myaccount.google.com/deleteservices',
+    category: 'Email',
     hasPersonalInfo: true
   },
   {
     id: '35',
-    name: 'Hulu',
-    url: 'hulu.com',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Hulu_Logo.svg/240px-Hulu_Logo.svg.png',
-    deleteUrl: 'https://help.hulu.com/s/article/delete-account',
-    category: 'Entertainment',
-    hasPersonalInfo: true
-  },
-  {
-    id: '36',
-    name: 'HBO Max',
-    url: 'hbomax.com',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/HBO_Max_Logo.svg/240px-HBO_Max_Logo.svg.png',
-    deleteUrl: 'https://help.hbomax.com/us/Answer/Detail/000001196',
-    category: 'Entertainment',
-    hasPersonalInfo: true
-  },
-  {
-    id: '37',
     name: 'YouTube',
     url: 'youtube.com',
     logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/YouTube_full-color_icon_%282017%29.svg/240px-YouTube_full-color_icon_%282017%29.svg.png',
@@ -345,148 +323,34 @@ const extendedRealSites: AccountData[] = [
     hasPersonalInfo: false
   },
   {
+    id: '36',
+    name: 'LinkedIn',
+    url: 'linkedin.com',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/LinkedIn_logo_initials.png/240px-LinkedIn_logo_initials.png',
+    deleteUrl: 'https://www.linkedin.com/help/linkedin/answer/63',
+    category: 'Professional',
+    hasPersonalInfo: true
+  },
+  {
+    id: '37',
+    name: 'Twitter',
+    url: 'twitter.com',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Logo_of_Twitter.svg/240px-Logo_of_Twitter.svg.png',
+    deleteUrl: 'https://twitter.com/settings/deactivate',
+    category: 'Social',
+    hasPersonalInfo: false
+  },
+  {
     id: '38',
-    name: 'Twitch',
-    url: 'twitch.tv',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Twitch_logo.svg/240px-Twitch_logo.svg.png',
-    deleteUrl: 'https://www.twitch.tv/user/delete-account',
-    category: 'Entertainment',
+    name: 'Telegram',
+    url: 'telegram.org',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Telegram_logo.svg/240px-Telegram_logo.svg.png',
+    deleteUrl: 'https://telegram.org/faq#q-how-do-i-delete-my-account',
+    category: 'Social',
     hasPersonalInfo: false
   },
   {
     id: '39',
-    name: 'SoundCloud',
-    url: 'soundcloud.com',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/SoundCloud_logo.svg/240px-SoundCloud_logo.svg.png',
-    deleteUrl: 'https://soundcloud.com/settings/account',
-    category: 'Entertainment',
-    hasPersonalInfo: false
-  },
-  {
-    id: '40',
-    name: 'Pandora',
-    url: 'pandora.com',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Pandora_radio.svg/240px-Pandora_radio.svg.png',
-    deleteUrl: 'https://help.pandora.com/s/article/How-do-I-delete-my-Pandora-account',
-    category: 'Entertainment',
-    hasPersonalInfo: false
-  },
-  {
-    id: '41',
-    name: 'Apple Music',
-    url: 'music.apple.com',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Apple_Music_logo.svg/240px-Apple_Music_logo.svg.png',
-    deleteUrl: 'https://support.apple.com/en-us/HT204068',
-    category: 'Entertainment',
-    hasPersonalInfo: true
-  },
-  
-  // Technology
-  {
-    id: '42',
-    name: 'Apple',
-    url: 'apple.com',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Apple_logo_black.svg/240px-Apple_logo_black.svg.png',
-    deleteUrl: 'https://privacy.apple.com/',
-    category: 'Technology',
-    hasPersonalInfo: true
-  },
-  {
-    id: '43',
-    name: 'Google',
-    url: 'google.com',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/240px-Google_%22G%22_Logo.svg.png',
-    deleteUrl: 'https://myaccount.google.com/deleteaccount',
-    category: 'Technology',
-    hasPersonalInfo: true
-  },
-  {
-    id: '44',
-    name: 'Adobe',
-    url: 'adobe.com',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Adobe_Systems_logo_and_wordmark.svg/240px-Adobe_Systems_logo_and_wordmark.svg.png',
-    deleteUrl: 'https://helpx.adobe.com/manage-account/kb/account-closure-faq.html',
-    category: 'Technology',
-    hasPersonalInfo: true
-  },
-  {
-    id: '45',
-    name: 'Samsung',
-    url: 'samsung.com',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Samsung_Logo.svg/240px-Samsung_Logo.svg.png',
-    deleteUrl: 'https://account.samsung.com/membership/contents/information/deleteaccount.do',
-    category: 'Technology',
-    hasPersonalInfo: true
-  },
-  
-  // Finance
-  {
-    id: '46',
-    name: 'Venmo',
-    url: 'venmo.com',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Venmo_logo.svg/240px-Venmo_logo.svg.png',
-    deleteUrl: 'https://help.venmo.com/hc/en-us/articles/235171088-Close-Your-Venmo-Account',
-    category: 'Finance',
-    hasPersonalInfo: true
-  },
-  {
-    id: '47',
-    name: 'Cash App',
-    url: 'cash.app',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Square_Cash_app_logo.svg/240px-Square_Cash_app_logo.svg.png',
-    deleteUrl: 'https://cash.app/account/settings',
-    category: 'Finance',
-    hasPersonalInfo: true
-  },
-  {
-    id: '48',
-    name: 'Chase',
-    url: 'chase.com',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Chase_logo_2007.svg/240px-Chase_logo_2007.svg.png',
-    deleteUrl: 'https://www.chase.com/digital/resources/privacy-security',
-    category: 'Finance',
-    hasPersonalInfo: true
-  },
-  {
-    id: '49',
-    name: 'Bank of America',
-    url: 'bankofamerica.com',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Bank_of_America_logo.svg/240px-Bank_of_America_logo.svg.png',
-    deleteUrl: 'https://www.bankofamerica.com/security-center/faq/removing-personal-information/',
-    category: 'Finance',
-    hasPersonalInfo: true
-  },
-  {
-    id: '50',
-    name: 'Wells Fargo',
-    url: 'wellsfargo.com',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Wells_Fargo_Bank.svg/240px-Wells_Fargo_Bank.svg.png',
-    deleteUrl: 'https://www.wellsfargo.com/privacy-security/',
-    category: 'Finance',
-    hasPersonalInfo: true
-  },
-
-  // Adding hundreds more real websites
-  {
-    id: '51',
-    name: 'Coinbase',
-    url: 'coinbase.com',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Coinbase.svg/240px-Coinbase.svg.png',
-    deleteUrl: 'https://help.coinbase.com/en/coinbase/managing-my-account/update-my-account/how-can-i-close-my-account',
-    category: 'Finance',
-    hasPersonalInfo: true
-  },
-  {
-    id: '52',
-    name: 'Robinhood',
-    url: 'robinhood.com',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Robinhood_Logo.svg/240px-Robinhood_Logo.svg.png',
-    deleteUrl: 'https://robinhood.com/us/en/support/articles/close-my-account/',
-    category: 'Finance',
-    hasPersonalInfo: true
-  },
-  {
-    id: '53',
     name: 'Zoom',
     url: 'zoom.us',
     logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Zoom_logo.svg/240px-Zoom_logo.svg.png',
@@ -495,134 +359,267 @@ const extendedRealSites: AccountData[] = [
     hasPersonalInfo: false
   },
   {
-    id: '54',
-    name: 'Trello',
-    url: 'trello.com',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Trello-logo-blue.svg/240px-Trello-logo-blue.svg.png',
-    deleteUrl: 'https://help.trello.com/article/805-deleting-a-trello-account',
-    category: 'Productivity',
-    hasPersonalInfo: false
-  },
-  {
-    id: '55',
-    name: 'Asana',
-    url: 'asana.com',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Asana_logo.svg/240px-Asana_logo.svg.png',
-    deleteUrl: 'https://asana.com/guide/help/faq/security#gl-delete-account',
-    category: 'Productivity',
-    hasPersonalInfo: false
+    id: '40',
+    name: 'Netflix',
+    url: 'netflix.com',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/240px-Netflix_2015_logo.svg.png',
+    deleteUrl: 'https://www.netflix.com/cancelplan',
+    category: 'Entertainment',
+    hasPersonalInfo: true
   }
 ];
 
-// Combine all the real websites into one large pool
-const allRealWebsites = [...mockAccounts, ...extendedRealSites];
+// Additional Indian and international websites
+const additionalWebsites: AccountData[] = [
+  {
+    id: '41',
+    name: 'Goibibo',
+    url: 'goibibo.com',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Goibibo_logo.svg/240px-Goibibo_logo.svg.png',
+    deleteUrl: 'https://www.goibibo.com/help/',
+    category: 'Travel',
+    hasPersonalInfo: true
+  },
+  {
+    id: '42',
+    name: 'Cleartrip',
+    url: 'cleartrip.com',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/CleartripLogo.svg/240px-CleartripLogo.svg.png',
+    deleteUrl: 'https://www.cleartrip.com/support',
+    category: 'Travel',
+    hasPersonalInfo: true
+  },
+  {
+    id: '43',
+    name: 'Yatra',
+    url: 'yatra.com',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Yatra_Logo.svg/240px-Yatra_Logo.svg.png',
+    deleteUrl: 'https://www.yatra.com/support',
+    category: 'Travel',
+    hasPersonalInfo: true
+  },
+  {
+    id: '44',
+    name: 'Lenskart',
+    url: 'lenskart.com',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Lenskart_Logo.svg/240px-Lenskart_Logo.svg.png',
+    deleteUrl: 'https://www.lenskart.com/customer/account/',
+    category: 'Shopping',
+    hasPersonalInfo: true
+  },
+  {
+    id: '45',
+    name: 'Nykaa',
+    url: 'nykaa.com',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Nykaa_Logo.svg/240px-Nykaa_Logo.svg.png',
+    deleteUrl: 'https://www.nykaa.com/account/orders',
+    category: 'Shopping',
+    hasPersonalInfo: true
+  },
+  {
+    id: '46',
+    name: 'Ajio',
+    url: 'ajio.com',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Ajio_Logo.svg/240px-Ajio_Logo.svg.png',
+    deleteUrl: 'https://www.ajio.com/help/customercare',
+    category: 'Shopping',
+    hasPersonalInfo: true
+  },
+  {
+    id: '47',
+    name: 'Rapido',
+    url: 'rapido.bike',
+    logo: 'https://www.rapido.bike/assets/images/logo/rapido_logo1.png',
+    deleteUrl: 'https://www.rapido.bike/contact-us',
+    category: 'Transportation',
+    hasPersonalInfo: true
+  },
+  {
+    id: '48',
+    name: 'IndiGo',
+    url: 'goindigo.in',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/IndiGo_Airlines_logo.svg/240px-IndiGo_Airlines_logo.svg.png',
+    deleteUrl: 'https://www.goindigo.in/information/contact-us.html',
+    category: 'Travel',
+    hasPersonalInfo: true
+  },
+  {
+    id: '49',
+    name: 'Practo',
+    url: 'practo.com',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Practo_Logo.svg/240px-Practo_Logo.svg.png',
+    deleteUrl: 'https://www.practo.com/company/contact',
+    category: 'Healthcare',
+    hasPersonalInfo: true
+  },
+  {
+    id: '50',
+    name: '1mg',
+    url: '1mg.com',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/1MG_Logo.svg/240px-1MG_Logo.svg.png',
+    deleteUrl: 'https://www.1mg.com/contact_us',
+    category: 'Healthcare',
+    hasPersonalInfo: true
+  }
+];
 
-// Add more real websites to reach 1000 accounts with different names and properties
-// This ensures variety while still keeping all sites as real websites
-const generateRemainingRealSites = () => {
+// Function to generate a large set of realistic websites
+const generateMoreRealWebsites = (): AccountData[] => {
   const baseWebsites = [
-    { name: "Medium", domain: "medium.com", category: "News" },
-    { name: "Quora", domain: "quora.com", category: "Social" },
-    { name: "Shopify", domain: "shopify.com", category: "Shopping" },
-    { name: "WordPress", domain: "wordpress.com", category: "Productivity" },
-    { name: "Blogger", domain: "blogger.com", category: "Productivity" },
-    { name: "Tinder", domain: "tinder.com", category: "Social" },
-    { name: "Bumble", domain: "bumble.com", category: "Social" },
-    { name: "Roblox", domain: "roblox.com", category: "Gaming" },
-    { name: "Epic Games", domain: "epicgames.com", category: "Gaming" },
-    { name: "Steam", domain: "steampowered.com", category: "Gaming" },
-    { name: "Playstation", domain: "playstation.com", category: "Gaming" },
-    { name: "Xbox", domain: "xbox.com", category: "Gaming" },
-    { name: "Nintendo", domain: "nintendo.com", category: "Gaming" },
-    { name: "Flickr", domain: "flickr.com", category: "Social" },
-    { name: "Canva", domain: "canva.com", category: "Productivity" },
-    { name: "Overleaf", domain: "overleaf.com", category: "Productivity" },
-    { name: "Squarespace", domain: "squarespace.com", category: "Business" },
-    { name: "Wix", domain: "wix.com", category: "Business" },
-    { name: "GoDaddy", domain: "godaddy.com", category: "Business" },
-    { name: "Namecheap", domain: "namecheap.com", category: "Business" },
-    { name: "Starbucks", domain: "starbucks.com", category: "Food" },
-    { name: "McDonalds", domain: "mcdonalds.com", category: "Food" },
-    { name: "KFC", domain: "kfc.com", category: "Food" },
-    { name: "Burger King", domain: "burgerking.com", category: "Food" },
-    { name: "Wendys", domain: "wendys.com", category: "Food" },
-    { name: "Dunkin Donuts", domain: "dunkindonuts.com", category: "Food" },
-    { name: "Chipotle", domain: "chipotle.com", category: "Food" },
-    { name: "Pizza Hut", domain: "pizzahut.com", category: "Food" },
-    { name: "Dominos", domain: "dominos.com", category: "Food" },
-    { name: "Papa Johns", domain: "papajohns.com", category: "Food" }
+    // Indian Companies
+    { name: "Byju's", domain: "byjus.com", category: "Education" },
+    { name: "Unacademy", domain: "unacademy.com", category: "Education" },
+    { name: "Vedantu", domain: "vedantu.com", category: "Education" },
+    { name: "Cult.fit", domain: "cult.fit", category: "Healthcare" },
+    { name: "PolicyBazaar", domain: "policybazaar.com", category: "Finance" },
+    { name: "BharatPe", domain: "bharatpe.com", category: "Finance" },
+    { name: "Meesho", domain: "meesho.com", category: "Shopping" },
+    { name: "Grofers", domain: "blinkit.com", category: "Shopping" },
+    { name: "Blinkit", domain: "blinkit.com", category: "Shopping" },
+    { name: "Zerodha", domain: "zerodha.com", category: "Finance" },
+    { name: "Ixigo", domain: "ixigo.com", category: "Travel" },
+    { name: "CoinDCX", domain: "coindcx.com", category: "Finance" },
+    { name: "WazirX", domain: "wazirx.com", category: "Finance" },
+    { name: "Pharmeasy", domain: "pharmeasy.in", category: "Healthcare" },
+    { name: "CarDekho", domain: "cardekho.com", category: "Automotive" },
+    { name: "Dream11", domain: "dream11.com", category: "Gaming" },
+    { name: "MPL", domain: "mpl.live", category: "Gaming" },
+    { name: "MyGate", domain: "mygate.com", category: "Services" },
+    { name: "Dunzo", domain: "dunzo.com", category: "Services" },
+    { name: "CRY", domain: "cry.org", category: "Nonprofit" },
+    { name: "Faasos", domain: "faasos.io", category: "Food" },
+    { name: "Netmeds", domain: "netmeds.com", category: "Healthcare" },
+    { name: "Oyo", domain: "oyorooms.com", category: "Travel" },
+    { name: "Cars24", domain: "cars24.com", category: "Automotive" },
+    { name: "Kotak", domain: "kotak.com", category: "Finance" },
+    { name: "Yes Bank", domain: "yesbank.in", category: "Finance" },
+    
+    // International websites popular in India
+    { name: "Uber", domain: "uber.com", category: "Transportation" },
+    { name: "Microsoft", domain: "microsoft.com", category: "Technology" },
+    { name: "Apple", domain: "apple.com", category: "Technology" },
+    { name: "Slack", domain: "slack.com", category: "Productivity" },
+    { name: "Airbnb", domain: "airbnb.com", category: "Travel" },
+    { name: "Google", domain: "google.com", category: "Technology" },
+    { name: "Yahoo", domain: "yahoo.com", category: "Email" },
+    { name: "Spotify", domain: "spotify.com", category: "Entertainment" },
+    { name: "GitHub", domain: "github.com", category: "Development" },
+    { name: "TikTok", domain: "tiktok.com", category: "Social" },
+    { name: "Reddit", domain: "reddit.com", category: "Social" },
+    { name: "Skype", domain: "skype.com", category: "Communication" },
+    { name: "Expedia", domain: "expedia.com", category: "Travel" },
+    { name: "Booking.com", domain: "booking.com", category: "Travel" },
+    { name: "PayPal", domain: "paypal.com", category: "Finance" },
+    { name: "Quora", domain: "quora.com", category: "Social" }
   ];
   
-  const remainingNeeded = 1000 - allRealWebsites.length;
-  const remainingSites: AccountData[] = [];
-  let currentId = allRealWebsites.length + 1;
+  const result: AccountData[] = [];
+  let idCounter = 51;
   
-  // Create variations of real sites to reach 1000
-  for (let i = 0; i < remainingNeeded; i++) {
-    const baseIndex = i % baseWebsites.length;
-    const baseWebsite = baseWebsites[baseIndex];
-    
-    // Create variations with region or number suffixes
-    const variations = [
-      "", "US", "UK", "EU", "Asia", "Pro", "Plus", "Premium", "Business", "Enterprise",
-      "Mobile", "App", "Web", "Cloud", "Online", "Official", "Connect", "Go", "Now", "Direct"
-    ];
-    
-    const variationIndex = Math.floor(i / baseWebsites.length) % variations.length;
-    const variation = variations[variationIndex];
-    
-    let siteName = baseWebsite.name;
-    let domain = baseWebsite.domain;
-    
-    // Add variation to name if not empty
-    if (variation) {
-      siteName = `${baseWebsite.name} ${variation}`;
-      
-      // Modify domain to reflect variation
-      const domainParts = baseWebsite.domain.split('.');
-      domain = `${domainParts[0]}-${variation.toLowerCase()}.${domainParts[1]}`;
-    }
-    
-    remainingSites.push({
-      id: currentId.toString(),
-      name: siteName,
-      url: domain,
-      logo: '', // Most will have empty logos
-      deleteUrl: `https://${domain}/account/delete`,
-      category: baseWebsite.category,
+  // Create variations of websites to reach 1000
+  for (const site of baseWebsites) {
+    result.push({
+      id: idCounter.toString(),
+      name: site.name,
+      url: site.domain,
+      logo: '', // Most will have empty logos for simplicity
+      deleteUrl: `https://${site.domain}/account/delete`,
+      category: site.category,
       hasPersonalInfo: Math.random() > 0.7 // About 30% have personal info
     });
     
-    currentId++;
+    idCounter++;
   }
   
-  return remainingSites;
+  // Generate more entries if needed to reach 1000
+  const domains = [".in", ".co.in", ".org.in", ".net.in", ".com", ".org", ".net"];
+  const serviceTypes = ["Online", "Web", "Mobile", "India", "Connect", "MyAccount", "Go", "Pro", "Plus"];
+  const industries = ["Shopping", "News", "Media", "Finance", "Health", "Tech", "Store", "Education", "Service"];
+  
+  const indianCities = [
+    "Delhi", "Mumbai", "Bangalore", "Chennai", "Kolkata", "Hyderabad", "Pune", 
+    "Ahmedabad", "Jaipur", "Surat", "Lucknow", "Kanpur", "Nagpur", "Indore", 
+    "Thane", "Bhopal", "Visakhapatnam", "Patna", "Vadodara", "Ghaziabad"
+  ];
+  
+  while (result.length + indianWebsites.length + globalWebsites.length + additionalWebsites.length < 1000) {
+    const city = indianCities[Math.floor(Math.random() * indianCities.length)];
+    const industry = industries[Math.floor(Math.random() * industries.length)];
+    const serviceType = serviceTypes[Math.floor(Math.random() * serviceTypes.length)];
+    const domain = domains[Math.floor(Math.random() * domains.length)];
+    
+    const name = `${city}${industry}`;
+    const url = `${name.toLowerCase().replace(/\s+/g, '')}${domain}`;
+    
+    result.push({
+      id: idCounter.toString(),
+      name: name,
+      url: url,
+      logo: '',
+      deleteUrl: `https://${url}/account/delete`,
+      category: industry,
+      hasPersonalInfo: Math.random() > 0.7
+    });
+    
+    idCounter++;
+  }
+  
+  return result;
 };
 
-// Generate additional sites to reach 1000 total
-const remainingRealSites = generateRemainingRealSites();
+// Combine all websites
+const allWebsites: AccountData[] = [
+  ...indianWebsites,          // Priority Indian websites (30)
+  ...globalWebsites,          // Popular global websites (10)
+  ...additionalWebsites,      // Additional Indian websites (10)
+  ...generateMoreRealWebsites() // Additional websites to reach 1000 total
+];
 
-// Final collection of 1000 real websites (no generic "Site123" style entries)
-const allMockAccounts = [...allRealWebsites, ...remainingRealSites];
-
-// Simulate a scanning process
+// Simulate a scanning process with higher priority for Indian websites
 export const scanEmailAccounts = async (email: string): Promise<ScanResult> => {
   // Simulate API call delay
   return new Promise((resolve) => {
     setTimeout(() => {
-      // Return a random number between 50 and 200 accounts
-      const numAccounts = Math.floor(Math.random() * 151) + 50; // Between 50 and 200
+      // Return a random number between 30 and 150 accounts
+      const numAccounts = Math.floor(Math.random() * 121) + 30; // Between 30 and 150
       
-      // Shuffle the pool of sites
-      const shuffledAccounts = [...allMockAccounts].sort(() => 0.5 - Math.random());
+      // Ensure that Indian websites have a higher chance of being included
+      let selected: AccountData[] = [];
       
-      // Take the first numAccounts
-      const selected = shuffledAccounts.slice(0, numAccounts);
+      // Ensure at least 60% of results are from top Indian websites if possible
+      const indianWebsitesCount = Math.min(
+        Math.floor(numAccounts * 0.6), 
+        indianWebsites.length
+      );
+      
+      // Randomly select Indian websites
+      const shuffledIndianWebsites = [...indianWebsites].sort(() => 0.5 - Math.random());
+      selected = selected.concat(shuffledIndianWebsites.slice(0, indianWebsitesCount));
+      
+      // Fill the rest with other websites
+      const remainingCount = numAccounts - selected.length;
+      
+      if (remainingCount > 0) {
+        // Shuffle the global and additional websites
+        const otherWebsites = [...globalWebsites, ...additionalWebsites, ...allWebsites.slice(indianWebsites.length + globalWebsites.length + additionalWebsites.length)];
+        const shuffledOtherWebsites = otherWebsites.sort(() => 0.5 - Math.random());
+        
+        selected = selected.concat(shuffledOtherWebsites.slice(0, remainingCount));
+      }
+      
+      // Ensure all IDs are unique by reassigning them
+      selected = selected.map((website, index) => ({
+        ...website,
+        id: (index + 1).toString()
+      }));
+      
+      // Final shuffle to make the results look natural
+      selected = selected.sort(() => 0.5 - Math.random());
       
       // Ensure at least one has personal info
       const hasPersonalInfo = selected.some(a => a.hasPersonalInfo);
-      if (!hasPersonalInfo && allRealWebsites.length > 0) {
-        const personalInfoAccount = allRealWebsites.find(a => a.hasPersonalInfo);
+      if (!hasPersonalInfo && indianWebsites.length > 0) {
+        const personalInfoAccount = indianWebsites.find(a => a.hasPersonalInfo);
         if (personalInfoAccount) {
           selected[0] = personalInfoAccount;
         }
@@ -632,7 +629,7 @@ export const scanEmailAccounts = async (email: string): Promise<ScanResult> => {
         email,
         accounts: selected,
         scannedAt: new Date(),
-        totalAccounts: numAccounts
+        totalAccounts: selected.length
       });
     }, 2500); // 2.5 seconds delay to simulate scanning
   });
