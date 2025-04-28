@@ -1,7 +1,7 @@
 
 import { ScanResult, AccountData } from '@/types';
 
-// Expanded mock data for demonstration (over 100 sites)
+// Real website mock data with recognizable brands
 const mockAccounts: AccountData[] = [
   {
     id: '1',
@@ -185,20 +185,124 @@ const mockAccounts: AccountData[] = [
   }
 ];
 
-// Generate a large number of additional mock sites
+// Expanded mock data with actual site names for more realistic results
 const generateAdditionalSites = () => {
+  // Real world popular websites by category
+  const additionalSites = [
+    // Social Media
+    { name: 'Snapchat', url: 'snapchat.com', category: 'Social', logo: 'https://upload.wikimedia.org/wikipedia/en/thumb/c/c4/Snapchat_logo.svg/240px-Snapchat_logo.svg.png' },
+    { name: 'WhatsApp', url: 'whatsapp.com', category: 'Social', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/240px-WhatsApp.svg.png' },
+    { name: 'Discord', url: 'discord.com', category: 'Social', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Discord_Color_Text_Logo.svg/240px-Discord_Color_Text_Logo.svg.png' },
+    { name: 'Telegram', url: 'telegram.org', category: 'Social', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Telegram_logo.svg/240px-Telegram_logo.svg.png' },
+    { name: 'Clubhouse', url: 'clubhouse.com', category: 'Social', logo: '' },
+    { name: 'Mastodon', url: 'mastodon.social', category: 'Social', logo: '' },
+    
+    // Shopping
+    { name: 'eBay', url: 'ebay.com', category: 'Shopping', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/EBay_logo.svg/240px-EBay_logo.svg.png' },
+    { name: 'Etsy', url: 'etsy.com', category: 'Shopping', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Etsy_logo.svg/240px-Etsy_logo.svg.png' },
+    { name: 'Walmart', url: 'walmart.com', category: 'Shopping', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Walmart_logo.svg/240px-Walmart_logo.svg.png' },
+    { name: 'Target', url: 'target.com', category: 'Shopping', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Target_Corporation_logo_%28vector%29.svg/240px-Target_Corporation_logo_%28vector%29.svg.png' },
+    { name: 'Best Buy', url: 'bestbuy.com', category: 'Shopping', logo: '' },
+    { name: 'Wayfair', url: 'wayfair.com', category: 'Shopping', logo: '' },
+    { name: 'ASOS', url: 'asos.com', category: 'Shopping', logo: '' },
+    
+    // Entertainment
+    { name: 'Disney+', url: 'disneyplus.com', category: 'Entertainment', logo: '' },
+    { name: 'Hulu', url: 'hulu.com', category: 'Entertainment', logo: '' },
+    { name: 'HBO Max', url: 'hbomax.com', category: 'Entertainment', logo: '' },
+    { name: 'YouTube', url: 'youtube.com', category: 'Entertainment', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/YouTube_full-color_icon_%282017%29.svg/240px-YouTube_full-color_icon_%282017%29.svg.png' },
+    { name: 'Twitch', url: 'twitch.tv', category: 'Entertainment', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Twitch_logo.svg/240px-Twitch_logo.svg.png' },
+    { name: 'SoundCloud', url: 'soundcloud.com', category: 'Entertainment', logo: '' },
+    { name: 'Pandora', url: 'pandora.com', category: 'Entertainment', logo: '' },
+    { name: 'Apple Music', url: 'music.apple.com', category: 'Entertainment', logo: '' },
+    
+    // Technology
+    { name: 'Apple', url: 'apple.com', category: 'Technology', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Apple_logo_black.svg/240px-Apple_logo_black.svg.png' },
+    { name: 'Google', url: 'google.com', category: 'Technology', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/240px-Google_%22G%22_Logo.svg.png' },
+    { name: 'Adobe', url: 'adobe.com', category: 'Technology', logo: '' },
+    { name: 'Samsung', url: 'samsung.com', category: 'Technology', logo: '' },
+    
+    // Finance
+    { name: 'Venmo', url: 'venmo.com', category: 'Finance', logo: '' },
+    { name: 'Cash App', url: 'cash.app', category: 'Finance', logo: '' },
+    { name: 'Chase', url: 'chase.com', category: 'Finance', logo: '' },
+    { name: 'Bank of America', url: 'bankofamerica.com', category: 'Finance', logo: '' },
+    { name: 'Wells Fargo', url: 'wellsfargo.com', category: 'Finance', logo: '' },
+    { name: 'Coinbase', url: 'coinbase.com', category: 'Finance', logo: '' },
+    { name: 'Robinhood', url: 'robinhood.com', category: 'Finance', logo: '' },
+    
+    // Productivity
+    { name: 'Zoom', url: 'zoom.us', category: 'Productivity', logo: '' },
+    { name: 'Trello', url: 'trello.com', category: 'Productivity', logo: '' },
+    { name: 'Asana', url: 'asana.com', category: 'Productivity', logo: '' },
+    { name: 'Notion', url: 'notion.so', category: 'Productivity', logo: '' },
+    { name: 'Monday', url: 'monday.com', category: 'Productivity', logo: '' },
+    { name: 'Google Drive', url: 'drive.google.com', category: 'Productivity', logo: '' },
+    { name: 'OneDrive', url: 'onedrive.live.com', category: 'Productivity', logo: '' },
+    
+    // Travel
+    { name: 'Booking.com', url: 'booking.com', category: 'Travel', logo: '' },
+    { name: 'Expedia', url: 'expedia.com', category: 'Travel', logo: '' },
+    { name: 'Hotels.com', url: 'hotels.com', category: 'Travel', logo: '' },
+    { name: 'TripAdvisor', url: 'tripadvisor.com', category: 'Travel', logo: '' },
+    { name: 'Lyft', url: 'lyft.com', category: 'Travel', logo: '' },
+    
+    // Food
+    { name: 'DoorDash', url: 'doordash.com', category: 'Food', logo: '' },
+    { name: 'Uber Eats', url: 'ubereats.com', category: 'Food', logo: '' },
+    { name: 'Grubhub', url: 'grubhub.com', category: 'Food', logo: '' },
+    { name: 'Instacart', url: 'instacart.com', category: 'Food', logo: '' },
+    { name: 'Yelp', url: 'yelp.com', category: 'Food', logo: '' },
+    
+    // News
+    { name: 'The New York Times', url: 'nytimes.com', category: 'News', logo: '' },
+    { name: 'CNN', url: 'cnn.com', category: 'News', logo: '' },
+    { name: 'BBC', url: 'bbc.com', category: 'News', logo: '' },
+    { name: 'The Guardian', url: 'theguardian.com', category: 'News', logo: '' },
+    { name: 'Medium', url: 'medium.com', category: 'News', logo: '' },
+    { name: 'Bloomberg', url: 'bloomberg.com', category: 'News', logo: '' },
+    
+    // Education
+    { name: 'Coursera', url: 'coursera.org', category: 'Education', logo: '' },
+    { name: 'Udemy', url: 'udemy.com', category: 'Education', logo: '' },
+    { name: 'Khan Academy', url: 'khanacademy.org', category: 'Education', logo: '' },
+    { name: 'edX', url: 'edx.org', category: 'Education', logo: '' },
+    { name: 'Duolingo', url: 'duolingo.com', category: 'Education', logo: '' },
+    
+    // Health
+    { name: 'MyFitnessPal', url: 'myfitnesspal.com', category: 'Health', logo: '' },
+    { name: 'Fitbit', url: 'fitbit.com', category: 'Health', logo: '' },
+    { name: 'Strava', url: 'strava.com', category: 'Health', logo: '' },
+    { name: 'Headspace', url: 'headspace.com', category: 'Health', logo: '' },
+    { name: 'Calm', url: 'calm.com', category: 'Health', logo: '' }
+  ];
+  
+  // Format all sites to match the AccountData interface
+  return additionalSites.map((site, index) => ({
+    id: (index + 21).toString(), // IDs continue from where mockAccounts left off
+    name: site.name,
+    url: site.url,
+    logo: site.logo || '', // Use provided logo or empty string
+    deleteUrl: `https://${site.url}/account/delete`,
+    category: site.category,
+    hasPersonalInfo: Math.random() > 0.7 // About 30% have personal info
+  }));
+};
+
+// Generate additional generic sites to reach the 1000 total if needed
+const generateGenericSites = (startId: number, count: number) => {
   const categories = ['Social', 'Shopping', 'Entertainment', 'Finance', 'Travel', 'Technology', 'Email', 'Gaming', 'News', 'Health', 'Food', 'Education', 'Business', 'Sports'];
   const siteSuffixes = ['.com', '.org', '.net', '.co', '.io', '.app', '.store', '.blog'];
   
-  const additionalSites: AccountData[] = [];
+  const genericSites: AccountData[] = [];
   
-  for (let i = 21; i <= 1000; i++) {
+  for (let i = 0; i < count; i++) {
     const category = categories[Math.floor(Math.random() * categories.length)];
-    const siteName = `Site${i}`;
+    const siteName = `Site${startId + i}`;
     const domain = siteName.toLowerCase() + siteSuffixes[Math.floor(Math.random() * siteSuffixes.length)];
     
-    additionalSites.push({
-      id: i.toString(),
+    genericSites.push({
+      id: (startId + i).toString(),
       name: siteName,
       url: domain,
       logo: '',
@@ -208,11 +312,22 @@ const generateAdditionalSites = () => {
     });
   }
   
-  return additionalSites;
+  return genericSites;
 };
 
-// Combine original mock sites with generated ones
-const allMockAccounts = [...mockAccounts, ...generateAdditionalSites()];
+// Get additional sites from our predefined list
+const additionalRealSites = generateAdditionalSites();
+
+// Calculate how many more generic sites we need to reach 1000
+const remainingCount = 1000 - (mockAccounts.length + additionalRealSites.length);
+
+// Generate remaining generic sites if needed
+const genericSites = remainingCount > 0 ? 
+  generateGenericSites(mockAccounts.length + additionalRealSites.length, remainingCount) : 
+  [];
+
+// Combine all sites
+const allMockAccounts = [...mockAccounts, ...additionalRealSites, ...genericSites];
 
 // Simulate a scanning process
 export const scanEmailAccounts = async (email: string): Promise<ScanResult> => {
@@ -222,9 +337,26 @@ export const scanEmailAccounts = async (email: string): Promise<ScanResult> => {
       // Return a random number between 50 and 200 accounts
       const numAccounts = Math.floor(Math.random() * 151) + 50; // Between 50 and 200
       
-      // Shuffle the accounts and select the first numAccounts
-      const shuffled = [...allMockAccounts].sort(() => 0.5 - Math.random());
-      let selected = shuffled.slice(0, numAccounts);
+      // Prioritize real accounts in the results
+      let selected: AccountData[] = [];
+      
+      // First add all real accounts (mockAccounts + additionalRealSites)
+      const realAccounts = [...mockAccounts, ...additionalRealSites];
+      
+      // Shuffle the real accounts for randomness
+      const shuffledRealAccounts = [...realAccounts].sort(() => 0.5 - Math.random());
+      
+      // Take at least 30 real accounts or all if less than 30
+      const realAccountsToUse = shuffledRealAccounts.slice(0, Math.min(30, shuffledRealAccounts.length));
+      selected = [...realAccountsToUse];
+      
+      // If we need more accounts to reach numAccounts, add generic ones
+      if (selected.length < numAccounts) {
+        const remainingNeeded = numAccounts - selected.length;
+        const shuffledGeneric = [...genericSites].sort(() => 0.5 - Math.random());
+        const genericAccountsToUse = shuffledGeneric.slice(0, remainingNeeded);
+        selected = [...selected, ...genericAccountsToUse];
+      }
       
       // Ensure at least one has personal info
       const hasPersonalInfo = selected.some(a => a.hasPersonalInfo);
@@ -235,6 +367,9 @@ export const scanEmailAccounts = async (email: string): Promise<ScanResult> => {
         }
       }
       
+      // Shuffle the final selection for a random order
+      selected = selected.sort(() => 0.5 - Math.random());
+      
       resolve({
         email,
         accounts: selected,
@@ -244,3 +379,4 @@ export const scanEmailAccounts = async (email: string): Promise<ScanResult> => {
     }, 2500); // 2.5 seconds delay to simulate scanning
   });
 };
+
